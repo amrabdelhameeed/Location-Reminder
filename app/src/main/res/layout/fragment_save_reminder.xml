@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.udacity.project4.locationreminders.savereminder.SaveReminderViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <EditText
+            android:text="@={viewModel.reminderTitle}"
+            android:hint="@string/reminder_title"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/reminderTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:lines="10"
+            android:hint="@string/reminder_desc"
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reminderTitle"
+            android:text="@={viewModel.reminderDescription}"
+            android:gravity="start"
+            android:id="@+id/reminderDescription" />
+
+        <TextView
+            android:text="@string/reminder_location"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/selectLocation"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reminderDescription"
+            android:drawableStart="@drawable/ic_location"
+            android:focusable="true"
+            android:textColor="@color/black"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_location"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            tools:text="Location"
+            android:id="@+id/selectedLocation"
+            android:textColor="@color/black"
+            android:text="@{viewModel.reminderSelectedLocationStr}"
+            android:layout_marginEnd="@dimen/margin_normal"
+            app:layout_constraintBottom_toBottomOf="@id/selectLocation"
+            app:layout_constraintTop_toTopOf="@id/selectLocation"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_normal"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/saveReminder"
+            app:fabSize="normal"
+            app:layout_anchorGravity="bottom|right|end"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:fadeVisible="@{!viewModel.showLoading.booleanValue()}"
+            android:src="@drawable/ic_save" />
+
+        <ProgressBar
+            android:layout_gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:fadeVisible="@{viewModel.showLoading.booleanValue()}"
+            android:id="@+id/progressBar"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

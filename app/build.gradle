@@ -1,0 +1,112 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.udacity.project4"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        pickFirst 'META-INF/AL2.0'
+        pickFirst 'META-INF/LGPL2.1'
+    }
+    testOptions.unitTests {
+        includeAndroidResources = true
+        returnDefaultValues = true
+    }
+
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+}
+
+dependencies {
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    testImplementation "com.google.truth:truth:$truthVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation "org.koin:koin-android:$koinVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
+    implementation "com.google.firebase:firebase-auth:21.0.8"
+    implementation 'com.google.firebase:firebase-analytics'
+    debugImplementation "androidx.fragment:fragment-testing:$fragmentVersion"
+    implementation "com.google.android.gms:play-services-location:20.0.0"
+    androidTestImplementation("org.koin:koin-test:$koinVersion") { exclude group: 'org.mockito' }
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    testImplementation "androidx.test:rules:$androidXTestRulesVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "com.google.android.gms:play-services-maps:18.1.0"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    androidTestImplementation "androidx.test:rules:$androidXTestRulesVersion"
+    androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
+    androidTestImplementation "org.robolectric:annotations:$robolectricVersion"
+    testImplementation "org.hamcrest:hamcrest-all:$hamcrestVersion"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.lifecycle:lifecycle-common-java8:$archLifecycleVersion"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
+    implementation "com.firebaseui:firebase-ui-auth:7.2.0"
+    testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$espressoVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
+    implementation platform('com.google.firebase:firebase-bom:29.2.0')
+    implementation "androidx.legacy:legacy-support-v4:$androidXLegacySupport"
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$archTestingVersion"
+    testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    androidTestImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.test:core:$androidXTestCoreVersion"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersion"
+    implementation "androidx.annotation:annotation:$androidXAnnotations"
+}
